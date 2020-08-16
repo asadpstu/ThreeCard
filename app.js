@@ -10,6 +10,11 @@ var io = require('socket.io').listen(server);
 server.listen(80);
 app.use('/static', express.static('node_modules'));
 
+app.use(express.static(__dirname + '/'));
+app.get('/', function(req, res) {
+  res.sendFile('index.html');
+});
+
 const users = {};
 var table = [];
 var cummulativeTable = [];
@@ -189,21 +194,9 @@ io.on('connection', socket => {
 
 
 
-app.use(express.static(__dirname + '/'));
-app.get('/', function(req, res) {
-  res.sendFile('index.html');
-});
 
 
-// error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
-});
 
-module.exports = app;
+
+

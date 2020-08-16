@@ -1,25 +1,14 @@
-var createError = require('http-errors');
+var http = require('http');
 var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-
-
 var app = express();
 
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+var server = http.createServer(app);
+// Pass a http.Server instance to the listen method
+var io = require('socket.io').listen(server);
 
-app.use(express.static(__dirname + '/'));
-app.get('/', function(req, res) {
-  res.sendFile('index.html');
-});
-
-
-const io = require('socket.io')(3001)
+// The server should start listening
+server.listen(80);
+app.use('/static', express.static('node_modules'));
 
 const users = {};
 var table = [];
@@ -200,10 +189,11 @@ io.on('connection', socket => {
 
 
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
+app.use(express.static(__dirname + '/'));
+app.get('/', function(req, res) {
+  res.sendFile('index.html');
 });
+
 
 // error handler
 app.use(function(err, req, res, next) {

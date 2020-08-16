@@ -1,4 +1,4 @@
-const socket = io('https://threecardsocket.herokuapp.com:3001')
+const socket = io('https://threecardsocket.herokuapp.com')
 var p_table_fold = [];
 function join()
 {

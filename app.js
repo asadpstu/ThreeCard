@@ -1,13 +1,10 @@
-var http = require('http');
 var express = require('express');
 var app = express();
+var http = require('http').createServer(app);
+var io = require('socket.io')(http);
 
-var server = http.createServer(app);
-// Pass a http.Server instance to the listen method
-var io = require('socket.io').listen(server);
 
-// The server should start listening
-server.listen(3000);
+
 app.use('/static', express.static('node_modules'));
 
 app.use(express.static(__dirname + '/'));
@@ -191,6 +188,10 @@ io.on('connection', socket => {
 
 
 })
+
+http.listen(3000, () => {
+  console.log('listening on *:3000');
+});
 
 
 

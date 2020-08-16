@@ -443,11 +443,27 @@
        
         function testAPI() {                      // Testing Graph API after login.  See statusChangeCallback() for when this call is made.
           console.log('Welcome!  Fetching your information.... ');
-          FB.api('/me?fields=name,first_name,last_name,email,gender,location,locale,work,languages,birthday,relationship_status,hometown,picture', function(response) {
-            console.log(response)
-            console.log('Successful login for: ' + response.name);
+          FB.api('/me?fields=name,first_name,last_name,email,gender,location,locale,work,languages,birthday,relationship_status,hometown,picture', function(data) {
+            console.log(data)
+            console.log('Successful login for: ' + data.name);
             document.getElementById('status').innerHTML =
-              'Thanks for logging in, ' + response.name + '!';
+              'Thanks for logging in, ' + data.name + '!';
+
+              data["amount"] = 5000;
+            localStorage.setItem('loginInfo',JSON.stringify(data));
+
+            const dataInitital = JSON.parse(localStorage.getItem('loginInfo'));
+            document.getElementById("balance").innerHTML = dataInitital.amount;
+            document.getElementById("profilePic").src = data.picture.data.url;
+            document.getElementById("username").innerHTML = data.name;
+            document.getElementById("email").innerHTML = data.email;
+
+            $('#facebook-button').hide();
+            $('#email').show();
+            $('#logout').show();
+            $('#devider').show();
+
+
           });
         }
       

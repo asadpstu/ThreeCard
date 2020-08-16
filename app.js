@@ -7,7 +7,7 @@ var server = http.createServer(app);
 var io = require('socket.io').listen(server);
 
 // The server should start listening
-server.listen(80);
+server.listen(3000);
 app.use('/static', express.static('node_modules'));
 
 app.use(express.static(__dirname + '/'));

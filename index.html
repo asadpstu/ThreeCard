@@ -539,10 +539,10 @@
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                 
                 
-                <a id="facebook-button" class="dropdown-item btn btn-block btn-social btn-facebook">
-                    <!-- <i class="fa fa-facebook"></i> Login with Facebook -->
-                    <fb:login-button scope="name,first_name,last_name,email,gender,location,locale,work,languages,birthday,relationship_status,hometown,picture" onlogin="checkLoginState();">
-</fb:login-button>
+                <a id="facebook-button" class="dropdown-item btn btn-block btn-social btn-facebook" onlogin="checkLoginState();">
+                    <i class="fa fa-facebook"></i> Login with Facebook
+                    <!-- <fb:login-button scope="name,first_name,last_name,email,gender,location,locale,work,languages,birthday,relationship_status,hometown,picture" >
+</fb:login-button> -->
 <div id="status">
 </div>
                 </a>
@@ -629,41 +629,6 @@
       e.preventDefault();
       $("#wrapper").toggleClass("toggled");
     });
-
-    $('#facebook-button').on('click', function() {
-    // Initialize with your OAuth.io app public key
-    OAuth.initialize('HwAr2OtSxRgEEnO2-JnYjsuA3tc');
-    // Use popup for oauth
-    OAuth.popup('facebook').then(facebook => {
-        console.log('facebook:',facebook);
-        // Prompts 'welcome' message with User's email on successful login
-        // #me() is a convenient method to retrieve user data without requiring you
-        // to know which OAuth provider url to call
-        facebook.me().then(data => {
-        //console.log('me data:', data);
-        //alert('Facebook says your email is:' + data.email + ".\nView browser 'Console Log' for more details");
-        })
-        // Retrieves user data from OAuth provider by using #get() and
-        // OAuth provider url
-        facebook.get('/v2.5/me?fields=name,first_name,last_name,email,gender,location,locale,work,languages,birthday,relationship_status,hometown,picture').then(data => {
-        //console.log('self data:', data);
-        data["amount"] = 5000;
-        localStorage.setItem('loginInfo',JSON.stringify(data));
-
-        const dataInitital = JSON.parse(localStorage.getItem('loginInfo'));
-        document.getElementById("balance").innerHTML = dataInitital.amount;
-        document.getElementById("profilePic").src = data.picture.data.url;
-        document.getElementById("username").innerHTML = data.name;
-        document.getElementById("email").innerHTML = data.email;
-
-        $('#facebook-button').hide();
-        $('#email').show();
-        $('#logout').show();
-        $('#devider').show();
-
-        })
-    });
-    })
 
 
     function logout()

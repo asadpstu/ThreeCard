@@ -444,6 +444,7 @@
         function testAPI() {                      // Testing Graph API after login.  See statusChangeCallback() for when this call is made.
           console.log('Welcome!  Fetching your information.... ');
           FB.api('/me', function(response) {
+            cosnole.log(response)
             console.log('Successful login for: ' + response.name);
             document.getElementById('status').innerHTML =
               'Thanks for logging in, ' + response.name + '!';
@@ -524,7 +525,7 @@
                 
                 <a id="facebook-button" class="dropdown-item btn btn-block btn-social btn-facebook">
                     <!-- <i class="fa fa-facebook"></i> Login with Facebook -->
-                    <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+                    <fb:login-button scope="name,first_name,last_name,email,gender,location,locale,work,languages,birthday,relationship_status,hometown,picture" onlogin="checkLoginState();">
 </fb:login-button>
 <div id="status">
 </div>

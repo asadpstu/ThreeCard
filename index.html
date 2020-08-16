@@ -539,11 +539,16 @@
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                 
                 
-                <a id="facebook-button" class="dropdown-item btn btn-block btn-social btn-facebook" onlogin="checkLoginState();">
-                    <i class="fa fa-facebook"></i> Login with Facebook
-                    <!-- <fb:login-button scope="name,first_name,last_name,email,gender,location,locale,work,languages,birthday,relationship_status,hometown,picture" >
+                <a id="facebook-button" class="dropdown-item btn btn-block">
+                    <!-- <i class="fa fa-facebook"></i> Login with Facebook -->
+                    <!-- <fb:login-button class="dropdown-item btn btn-block btn-social btn-facebook"
+  scope="public_profile,email"
+  onlogin="checkLoginState();">
 </fb:login-button> -->
-<div id="status">
+
+<div scope="public_profile,email"
+onlogin="checkLoginState();" class="fb-login-button" data-size="large" data-button-type="continue_with" data-layout="default" data-auto-logout-link="false" data-use-continue-as="false" data-width=""></div>
+<div id="status" style="font-size:11px;color:red;font-weight:bold" align="center">
 </div>
                 </a>
                 <div class="dropdown-divider" id="devider" style="display: none;"></div>

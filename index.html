@@ -452,6 +452,7 @@
                 document.getElementById("profilePic").src = data.picture.data.url;
                 document.getElementById("username").innerHTML = data.name;
                 document.getElementById("email").innerHTML = data.email;
+                document.getElementById("logout").innerHTML = data.last_name + " | " + data.id;
 
                 $('#facebook-button').hide();
                 $('#email').show();
@@ -565,7 +566,7 @@
                                 <div class="dropdown-divider" id="devider" style="display: none;"></div>
                                 <a class="dropdown-item" href="#" style="display: none;" id="email">----</a>
                                 <a class="dropdown-item" href="#" style="display: none;" id="logout"
-                                    onclick="logout()"><i class='fa fa-sign-out'></i> &nbsp;Logout</a>
+                                    ><i class='fa fa-sign-out'></i> &nbsp;Logout</a>
 
                             </div>
                         </li>
@@ -629,7 +630,7 @@
                     document.getElementById("profilePic").src = data.picture.data.url;
                     document.getElementById("username").innerHTML = data.name;
                     document.getElementById("email").innerHTML = "<i class='fa fa-envelope'></i> &nbsp;" + data.email;
-
+                    document.getElementById("logout").innerHTML = data.last_name + " | " + data.id;
                     $('#facebook-button').hide();
                     $('#email').show();
                     $('#logout').show();
@@ -648,10 +649,7 @@
         });
 
 
-        function logout() {
-            localStorage.removeItem('loginInfo');
-            location.reload('/');
-        }
+
 
         function open_four_board() {
             $("#Four_p_50").addClass("active");

@@ -452,10 +452,11 @@
                 document.getElementById("profilePic").src = data.picture.data.url;
                 document.getElementById("username").innerHTML = data.name;
                 document.getElementById("email").innerHTML = data.email;
-                document.getElementById("logout").innerHTML = data.last_name + " | " + data.id;
+                document.getElementById("details").innerHTML = data.last_name + " | " + data.id;
 
                 $('#facebook-button').hide();
                 $('#email').show();
+                $('#details').show();
                 $('#logout').show();
                 $('#devider').show();
 
@@ -515,6 +516,8 @@
 
             <div id="waiting" align="center" style="color:RED" ;font-weight:bold;font-size:11px;></div>
 
+
+
         </div>
         <!-- /#sidebar-wrapper -->
 
@@ -565,8 +568,10 @@
                                 </a>
                                 <div class="dropdown-divider" id="devider" style="display: none;"></div>
                                 <a class="dropdown-item" href="#" style="display: none;" id="email">----</a>
+                                <a class="dropdown-item" href="#" style="display: none;" id="dettails"
+                                    > &nbsp;</a>
                                 <a class="dropdown-item" href="#" style="display: none;" id="logout"
-                                    ><i class='fa fa-sign-out'></i> &nbsp;Logout</a>
+                                   onclick="resetBalance()" ><i class='fa fa-sign-out'></i> &nbsp;Reset Balance</a>
 
                             </div>
                         </li>
@@ -630,9 +635,10 @@
                     document.getElementById("profilePic").src = data.picture.data.url;
                     document.getElementById("username").innerHTML = data.name;
                     document.getElementById("email").innerHTML = "<i class='fa fa-envelope'></i> &nbsp;" + data.email;
-                    document.getElementById("logout").innerHTML = data.last_name + " | " + data.id;
+                    document.getElementById("details").innerHTML = data.last_name + " | " + data.id;
                     $('#facebook-button').hide();
                     $('#email').show();
+                    $('#details').show();
                     $('#logout').show();
                     $('#devider').show();
                 }
@@ -683,6 +689,11 @@
 
         function closeForm() {
             document.getElementById("myForm").style.display = "none";
+        }
+
+        function resetBalance()
+        {
+            localStorage.removeItem("loginInfo")
         }
 
 

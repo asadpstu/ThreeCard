@@ -454,8 +454,22 @@
                 document.getElementById('status').innerHTML =
                     'Thanks for logging in, ' + data.name + '!';
 
-                data["amount"] = 5000;
-                localStorage.setItem('loginInfo', JSON.stringify(data));
+                try
+                {
+                  var previeousData =  JSON.parse(localStorage.getItem('loginInfo'));
+                  if(previeousData)
+                  {
+                      //then dont need to refil account
+                  }
+                }  
+                catch(e)
+                {
+                  data["amount"] = 5000;
+                  localStorage.setItem('loginInfo', JSON.stringify(data));
+                }  
+
+                
+                
 
                 const dataInitital = JSON.parse(localStorage.getItem('loginInfo'));
                 document.getElementById("balance").innerHTML = dataInitital.amount;

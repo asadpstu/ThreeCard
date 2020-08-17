@@ -249,7 +249,6 @@ socket.on('received-amount-update', data => {
   document.getElementById("t4_label").innerHTML = "";
 
   var ReshapeTable = [{},{},{},{}];
-  console.log(ReshapeTable)
   var tableInfo = data.tableInfo;
   for(var sort=0;sort < tableInfo.length;sort++)
   {
@@ -439,7 +438,7 @@ socket.on("received-game-start-warning",data=>{
 
   //Reshape table for temporary purpose later code will refactored
   
-  console.log(shapeTable)
+
   var tableInfo = data.tableInfo;
   for(var sort=0;sort < tableInfo.length;sort++)
   {
@@ -599,7 +598,7 @@ function distribute(table)
   
   //sorting Table for sequence
  
-  console.log(emptyTable)
+
 
   for(var sort=0;sort < table.length;sort++)
   {
@@ -622,7 +621,7 @@ function distribute(table)
     }
   }
 
-  console.log(emptyTable)
+
 
   var tab1 = [];
   var tab2 = [];
@@ -768,21 +767,16 @@ function show()
   //   ["3D.png", "6D.png", "9D.png"],
   //   ["2C.png", "2D.png", "2K.png"]   
   // ]
-  //console.log(receivedPacketAll);
+
   var onlyUniqueTableValue = uniqBy(receivedPacketAll, JSON.stringify)
-  console.log(onlyUniqueTableValue)
 
 
-
-  
-  //console.log(tableSeat)
   var Specialrun = [3,6,9];
   var Exceptionrun = [2,3,14];
   var Result = [];
 
   for(var i=0;i<4;i++)
   {
-      //console.log(emptyTable)
       //result Table1
       var T1_Color = false;
       var T1_Run = false;
@@ -803,9 +797,9 @@ function show()
       T1_numbers.push(T1_3_First);
       
 
-      console.log(T1_numbers);
+
       var sortT1 = T1_numbers.sort(function(a, b){return a-b});
-      console.log(sortT1);
+
 
       var T1_1_Last = onlyUniqueTableValue[i].cards[0].substr(onlyUniqueTableValue[i].cards[0].length - 5);
       var T1_2_Last = onlyUniqueTableValue[i].cards[1].substr(onlyUniqueTableValue[i].cards[1].length - 5);
@@ -857,14 +851,6 @@ function show()
 
 
 
-      
-      // console.log("color : " , T1_Color)
-      // console.log("Run : " , T1_Run)
-      // console.log("Special Run : " , T1_SpecialRun)
-      // console.log("Exception Run : " , T1_ExceptionRun)
-      // console.log("Tray : " , T1_Tray)
-      // console.log("Pair : " , T1_Pair_Available)
-      // console.log("Pair Number : " , T1_Pair)
 
       var T1_Value1 = 0;
       var executingBlock = "";
@@ -978,11 +964,7 @@ function show()
      }
 
   }
-  console.log(Result)
-  console.log(winner)
-  
-  console.log("Winner=============================================>")
-  console.log(winnerObj)
+
 
   socket.emit("winner", {"winnerObj" : winnerObj, "table" : Result } );
 
@@ -1044,7 +1026,6 @@ function uniqBy(a, key) {
 //endgame Notification
 function endgame(p_table_id)
 {
-  console.log(shapeTable);
   const data = JSON.parse(localStorage.getItem('loginInfo'));
   for(var i=0;i<shapeTable.length;i++){
     if(shapeTable[i].tableName === p_table_id && data.name === shapeTable[i].bookedBy)
@@ -1064,7 +1045,6 @@ function endgame(p_table_id)
 
 function foldgame(p_table_id)
 {
-  console.log(shapeTable);
   const data = JSON.parse(localStorage.getItem('loginInfo'));
   for(var i=0;i<shapeTable.length;i++){
     if(shapeTable[i].tableName === p_table_id && data.name === shapeTable[i].bookedBy)
@@ -1093,7 +1073,6 @@ socket.on("show-request-received",(p_table_id_list)=>{
     $("#"+p_table_id_list[i]+"_end_game").hide();
   }
 
-  console.log(p_table_id_list.length)
   if(p_table_id_list.length === 4)
   {
     show();
@@ -1138,7 +1117,6 @@ socket.on("listen-winner",(data)=>{
   $("#"+data.winnerObj.Table+"_congrats").show();
   document.getElementById(""+data.winnerObj.Table+"_congrats").src = "image/Graphic/winner.gif";
 
-  console.log(data.table);
 
   for(var i=0;i<data.table.length;i++)
   {

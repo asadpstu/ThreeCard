@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-
-    <title>Three card Poker</title>
+    <link rel="icon" href="image/Graphic/tray.png" type="image/icon type">
+    <title>Three card</title>
 
 
     <!-- Bootstrap core CSS -->
@@ -413,9 +413,7 @@
 
     <script>
 
-        function statusChangeCallback(response) {  // Called with the results from FB.getLoginStatus().
-            console.log('statusChangeCallback');
-            console.log(response);                   // The current login status of the person.
+        function statusChangeCallback(response) {  
             if (response.status === 'connected') {   // Logged into your webpage and Facebook.
                 testAPI();
             } else {                                 // Not logged into your webpage or we are unable to tell.
@@ -447,10 +445,7 @@
         };
 
         function testAPI() {                      // Testing Graph API after login.  See statusChangeCallback() for when this call is made.
-            console.log('Welcome!  Fetching your information.... ');
             FB.api('/me?fields=name,first_name,last_name,email,gender,location,locale,work,languages,birthday,relationship_status,hometown,picture', function (data) {
-                console.log(data)
-                console.log('Successful login for: ' + data.name);
                 document.getElementById('status').innerHTML =
                     'Thanks for logging in, ' + data.name + '!';
  
@@ -491,7 +486,7 @@
         <!-- Sidebar -->
         <div class="bg-light border-right" id="sidebar-wrapper">
             <div class="sidebar-heading" align="center">
-                <img src="image/Graphic/tray.png" class="img" style="height: 105px;">
+                <img src="image/Graphic/tray.png" class="img" style="height: 180px;">
             </div>
             <div class="list-group list-group-flush" align="center">
 
@@ -709,7 +704,7 @@
                 icon: 'warning',
             })
         } else {
-            console.log("Browsing from Laptop")
+            console.log("Browsing from computer")
         }
     </script>
 

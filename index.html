@@ -453,26 +453,7 @@
                 console.log('Successful login for: ' + data.name);
                 document.getElementById('status').innerHTML =
                     'Thanks for logging in, ' + data.name + '!';
-
-                try
-                {
-                  var previeousData =  JSON.parse(localStorage.getItem('loginInfo'));
-                  if(previeousData)
-                  {
-                      //then dont need to refil account
-                  }
-                }  
-                catch(e)
-                {
-                  data["amount"] = 5000;
-                  localStorage.setItem('loginInfo', JSON.stringify(data));
-                }  
-
-                
-                
-
-                const dataInitital = JSON.parse(localStorage.getItem('loginInfo'));
-                document.getElementById("balance").innerHTML = dataInitital.amount;
+ 
                 document.getElementById("profilePic").src = data.picture.data.url;
                 document.getElementById("username").innerHTML = data.name;
                 document.getElementById("email").innerHTML = data.email;
@@ -481,6 +462,19 @@
                 $('#email').show();
                 $('#logout').show();
                 $('#devider').show();
+
+
+                try
+                {
+                    const dataInitital = JSON.parse(localStorage.getItem('loginInfo'));
+                    document.getElementById("balance").innerHTML = dataInitital.amount;          
+                }
+                catch(e)
+                {
+                    data["amount"] = 5000;
+                    localStorage.setItem('loginInfo', JSON.stringify(data));
+                    document.getElementById("balance").innerHTML = "5000";
+                }
 
 
             });
@@ -699,6 +693,24 @@
         }
 
 
+    </script>
+
+    <script type="text/javascript">
+        var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+        if (isMobile) {
+            Swal.fire({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                title: 'Warning!',
+                text: "Please Browse this site in your computer for better user experience!",
+                icon: 'warning',
+            })
+        } else {
+            console.log("Browsing from Laptop")
+        }
     </script>
 
 

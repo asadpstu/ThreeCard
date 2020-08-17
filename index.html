@@ -455,6 +455,7 @@
                 document.getElementById("details").innerHTML = data.last_name + " | " + data.id;
 
                 $('#facebook-button').hide();
+                $("#fb-login-button").hide();
                 $('#email').show();
                 $('#details').show();
                 $('#logout').show();
@@ -562,7 +563,7 @@
                                     <div scope="public_profile,email" onlogin="checkLoginState();"
                                         class="fb-login-button" data-size="large" data-button-type="continue_with"
                                         data-layout="default" data-auto-logout-link="false" data-use-continue-as="false"
-                                        data-width=""></div>
+                                        data-width="" id="fb-login-button"></div>
                                     <div id="status" style="font-size:11px;color:red;font-weight:bold" align="center">
                                     </div>
                                 </a>
@@ -637,6 +638,7 @@
                     document.getElementById("email").innerHTML = "<i class='fa fa-envelope'></i> &nbsp;" + data.email;
                     document.getElementById("details").innerHTML = data.last_name + " | " + data.id;
                     $('#facebook-button').hide();
+                    $("#fb-login-button").hide();
                     $('#email').show();
                     $('#details').show();
                     $('#logout').show();
